@@ -1,0 +1,142 @@
+@import "~antd/lib/style/index";
+@import '~react-date-range/dist/styles.css'; // main style file
+@import '~react-date-range/dist/theme/default.css'; // theme css file
+
+// @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400&family=Berkshire+Swash&display=swap');
+
+body {
+  margin: 0;
+//   font-family: 'Barlow', sans-serif !important;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.inMobile{
+    display: none !important;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.j-right{
+    justify-content: right;
+}
+
+.m-visible{
+    display: none !important;
+}
+
+.t-visible{
+    display: none !important;
+}
+
+.t-center{
+    text-align: center !important;
+}
+
+@media (max-width: 576px){
+    .inMobile{
+        // display: inherit !important;
+        display: unset !important;
+    }
+}
+
+.container, .container-flud {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 70rem !important;
+    }
+    .container-flud{
+        max-width: 75rem !important;
+    }
+}
+
+@media (min-width: 576px){
+    .container {
+        max-width: 540px;
+    }
+    .container-flud{
+        max-width: 600px !important;
+    }
+}
+
+// xs
+@media (min-width: 768px){
+    .container {
+        max-width: 720px;
+    }
+    .container-flud{
+        max-width: unset !important;
+    }
+   
+}
+
+@media (max-width: 768px){
+    .m-hide{
+        display: none !important;
+    }
+    .m-visible{
+        display: flex !important;
+    }
+}
+
+@media (max-width: 992px){
+    .t-hide{
+        display: none !important;
+    }
+    .t-visible{
+        display: flex !important;
+    }
+}
+
+@media (min-width: 992px){
+    .container {
+        max-width: 960px;
+    }
+    .container-flud{
+        max-width: unset !important;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
+    .container-flud{
+        max-width: unset !important;
+    }
+}
+
+// common css
+.d-flex{
+    display: flex !important;
+}
+
+.j-center{
+    justify-content: center;
+}
+
+.j-end{
+    justify-content: end !important;
+}
+
+.j-space-between{
+    justify-content: space-between;
+}
+
+.j-left{
+    justify-content: left;
+}
+
+.section {
+    margin: 20px 0px;
+}

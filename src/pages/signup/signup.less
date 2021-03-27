@@ -1,0 +1,64 @@
+.singup-root{
+    background-position: center;
+    overflow: auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+
+    .header{
+        text-align: center;
+
+        h2, p{
+            color: #fff;
+        }
+
+        h2{
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+    }
+
+    #singup-supplier{
+        background-color: #04040496;
+        padding: 20px;
+        // max-width: 500px;
+        margin: auto;
+        color: #fff;
+
+        .ant-form-item{
+            margin-bottom: 15px;
+        }
+
+        .ant-form-item-label{
+            text-align: left;
+        }
+
+        label::after {
+            content: '';
+            position: relative;
+            top: -0.5px;
+            margin: 0 8px 0 2px;
+        }
+
+        .ant-upload-list{
+            // background: #fbfbfb;
+            border-radius: 3px;
+            margin-top: 10px;
+            padding-bottom: 5px;
+            .ant-upload-list-text-container{
+                background-color: #fff;
+            }
+        }
+
+        label{
+            color: #fff;
+        }
+    }
+}
