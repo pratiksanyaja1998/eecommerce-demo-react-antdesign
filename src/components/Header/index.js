@@ -2,7 +2,7 @@ import "./Header.less";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Layout, Menu, Button, Dropdown, Drawer } from "antd";
+import { Layout, Menu, Button, Dropdown, Drawer, message } from "antd";
 import {
   UserOutlined,
   MenuOutlined,
@@ -97,7 +97,7 @@ class HeaderComp extends Component {
     this.setState({
       logoutLoading: true,
     })
-
+    let formData = new FormData();
     axios
       .delete("/users/sign_out.json", formData)
       .then((response) => {
@@ -107,7 +107,7 @@ class HeaderComp extends Component {
 
         if(success){
           // props.history.push('/');
-          props.logout();
+          this.props.logout();
           
         }else{
           message.error(errorMessage);
@@ -194,7 +194,7 @@ class HeaderComp extends Component {
                     <span className="user-name">{user.FullName}</span>
                     </>
                   </Dropdown>
-                  <Button type={'primary'} shape="round" loading={logoutLoading} onClick={doLogout} size="small" style={{marginLeft: 10}}>Log out</Button>
+                  <Button type={'primary'} shape="round" loading={logoutLoading} onClick={this.doLogout} size="small" style={{marginLeft: 10}}>Log out</Button>
                   </>
                 )}
               </div>
