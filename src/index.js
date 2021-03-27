@@ -23,7 +23,10 @@ const storeReducer = function (
   state = { user: JSON.parse(localStorage.getItem("auth") || null), cart: [], product },
   action
 ) {
+  let newCart = state.cart;
+
   switch (action.type) {
+    
     case "LOGIN":
       localStorage.setItem("auth", JSON.stringify(action.payload));
       axios.defaults.headers.common["Authorization"] =
@@ -34,13 +37,17 @@ const storeReducer = function (
       delete axios.defaults.headers.common["Authorization"];
       return { locale: "en", user: null };
     case "ADD_INTO_CART":
-      let newCart = state.cart;
-      newCart.push(action.payload);
+      newCart.push({...action.payload, qty:1});
       return { ...state, cart: newCart };
     case "REMOVE_FROM_CART":
-      let cart = state.cart;
-      cart.push(action.payload);
-      return { ...state, cart };
+      newCart = state.cart;
+      newCart.splice(action.payload, 1)
+      return { ...state, newCart };
+    case "UPDATE_QTY":
+      newCart = state.cart;
+      newCart[action.payload.index].qty = action.payload.qty
+      // newCart.splice(action.payload, 1)
+      return { ...state, newCart };
     default:
       return state;
   }

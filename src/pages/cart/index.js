@@ -11,6 +11,7 @@ import {
   TwitterOutlined,
   PlusCircleOutlined,
   PlusOutlined,
+  MinusOutlined
 } from "@ant-design/icons";
 import { IntlProvider, FormattedMessage } from "react-intl";
 import { Select, Upload, Checkbox, Tag, Tooltip, Layout } from "antd";
@@ -33,12 +34,43 @@ const Cart = (props) => {
         <Heading value={"Checkout"} style={{ marginBottom: 20 }} />
         <div className="container">
           {cart.map((o, index) => {
-            return <div className="stats-card" key={index}>
-              <img src={o.photo} />
-              <div className="details">
-                
+            return (
+              <div className="stats-card" key={index}>
+                <img src={o.photo} />
+                <div className="details">
+                    <div className="d-flex j-space-between">
+                      <span className="name">{o.name}</span>
+                      <span className="price">{o.price} $</span>
+                    </div>
+                    <div
+                      className="d-flex "
+                      style={{ marginTop: 8 }}
+                    >
+                      <Button
+                        type="primary"
+                        icon={<PlusOutlined />}
+                        onClick={()=>{
+                          props.updateQty({
+                            index,
+                            qty: o.qty +1
+                          })
+                        }}
+                      />
+                      <span className="qty" style={{padding: "0px 10px"}}> {o.qty}</span>
+                      <Button
+                        type="primary"
+                        icon={<MinusOutlined />}
+                        onClick={()=>{
+                          props.updateQty({
+                            index,
+                            qty: o.qty - 1
+                          })
+                        }}
+                      />
+                    </div>
+                </div>
               </div>
-            </div>;
+            );
           })}
         </div>
       </Content>
@@ -58,6 +90,12 @@ const mapDispatchToProps = (dispatch) => {
     addIntoCart: (data) => {
       dispatch({
         type: "ADD_INTO_CART",
+        payload: data,
+      });
+    },
+    updateQty: (data) => {
+      dispatch({
+        type: "UPDATE_QTY",
         payload: data,
       });
     },

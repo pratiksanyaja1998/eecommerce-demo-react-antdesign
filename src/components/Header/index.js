@@ -92,8 +92,42 @@ class HeaderComp extends Component {
     
   };
 
+
+  doLogout = ()=>{
+    this.setState({
+      logoutLoading: true,
+    })
+
+    axios
+      .delete("/users/sign_out.json", formData)
+      .then((response) => {
+        // console.log("-----------------------------------------")
+        // console.log(response.data)
+        const { success, message : errorMessage, status, data, common, subscription_plans } = response.data;
+
+        if(success){
+          // props.history.push('/');
+          props.logout();
+          
+        }else{
+          message.error(errorMessage);
+        }
+        this.setState({
+          logoutLoading: false,
+        })
+      })
+      .catch((e) => {
+        console.error(e.response?.data);
+        message.error(e.response?.data?.message || "Something went wrong.");
+        this.setState({
+          logoutLoading: false,
+        })
+      });
+
+  }
+
   render() {
-    const { isOpenDrawer, isScrolled, transparentMobile, user, current } = this.state;
+    const { isOpenDrawer, isScrolled, transparentMobile, user, current, logoutLoading=false } = this.state;
 
 
 
@@ -160,7 +194,7 @@ class HeaderComp extends Component {
                     <span className="user-name">{user.FullName}</span>
                     </>
                   </Dropdown>
-                  <Button type={'primary'} shape="round" onClick={this.props.logout} size="small" style={{marginLeft: 10}}>Log out</Button>
+                  <Button type={'primary'} shape="round" loading={logoutLoading} onClick={doLogout} size="small" style={{marginLeft: 10}}>Log out</Button>
                   </>
                 )}
               </div>
